@@ -1,0 +1,32 @@
+{%extends 'base.html'%}
+
+{%block content %}
+
+<div class="container">
+    <br>
+    <div class="card">
+        <div class="card-body">
+           <div class="row">
+            <div class="col-md-4">
+                <img src="{{college.image}}" alt="" class="img-fluid" width="100%">
+               
+            </div>
+            <div class="col-md-8">
+                <h3 class="text-center">
+                    {{college.name}}
+                </h3>
+                <p>{{college.description}}</p>
+
+               {% if request.user.is_authenticated %}
+                   {% if request.user.is_superuser %}
+                      <a href="{% url 'app1:edit_colleges' college.id %}" class="btn btn-warning">Edit College</a>
+                      <a href="{% url 'app1:delete_college' college.id %}" class="btn btn-danger">Delete College</a>
+                   {% endif %}
+               {% endif %}
+            </div>
+            </div>
+       </div>
+    </div>
+</div>                    
+
+{%endblock%}
